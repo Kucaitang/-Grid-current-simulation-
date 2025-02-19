@@ -62,43 +62,6 @@ class Net(object):
             return ord - 1
 
         # node calculate
-        '''
-        load_states = numpy.zeros(len(loads_list))
-        for i in self.nodes[0].connect:
-            load_states[self.loads_dictionary[i]] = 1
-        
-        fg = 1
-        while fg == 1:
-            fg = 0
-            for node_ord in range(len(self.nodes)-1):
-                node_ord += 1
-                if not temp_block[temp_node_ord(node_ord)][temp_load_ord(node_ord)] == -1.:
-                    fg = 1
-                    for load_dependency_item_id in self.nodes[node_ord].connect:
-                        load_ord = self.loads_dictionary[load_dependency_item_id]
-                        if load_states[load_ord] == 1:
-                            # 暂仅支持纯电阻电路
-                            temp_block[temp_node_ord(node_ord)][temp_load_ord(load_ord)] = self.loads[load_ord].r
-                            # delta v = I x r
-                            if self.nodes[node_ord].id == self.loads[load_ord].connect[0]:
-                                base_node_ord = self.nodes_dictionary[self.loads[load_ord].id]
-                                temp_block[temp_node_ord(node_ord)][temp_node_ord(base_node_ord)] = 1
-                            # base v
-                            try:
-                                if self.nodes[node_ord].id == self.loads[load_ord].connect[0]:
-                                    temp_result[node_ord] -= self.loads[load_ord].v
-                                else:
-                                    temp_result[node_ord] += self.loads[load_ord].v
-                            finally:
-                                pass
-                            # electromotive force
-                            temp_block[temp_node_ord(node_ord)][temp_load_ord(node_ord)] = -1.
-                            # 另一侧
-                            for i in self.nodes[node_ord].connect:
-                                load_states[self.loads_dictionary[i]] = 1
-                            # 更新状态表
-                            break
-        '''
         for node_ord in range(len(self.nodes)-1):
             node_ord += 1
             for temp_dependency_load in self.nodes[node_ord].connect:
