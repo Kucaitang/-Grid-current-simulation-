@@ -52,6 +52,7 @@ class Net(object):
         self.currents = numpy.zeros(len(loads))
 
     def calculate(self):
+        # based on matrix solving
         temp_block = numpy.zeros((self.length, self.length), dtype=float)
         temp_result = numpy.zeros(self.length)
 
